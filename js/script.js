@@ -67,16 +67,9 @@ const validationCheckbox = () => {
  * Gera senha customizada com letras maiúsculas, minúsculas,
  * números e caracteres
  */
-const getPassword = (
-    getLetterLowerCase,
-    getLetterUpperCase,
-    getNumber,
-    getSymbol
-) => {
-    // Refatorar esa parte
+const getPassword = () => {
     let password = "";
-    characters = charactersLengthValidation();
-
+    let characters = charactersLengthValidation();
     const generators = validationCheckbox();
 
     for (let i = 0; i < characters; i++) {
