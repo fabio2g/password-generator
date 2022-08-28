@@ -38,6 +38,28 @@
                 Quer ajuda para gerar uma senha segura?
                 <span class="generate--password">Clique aqui.</span>
             </p>
+
+            <div class="options--password">
+                <p>Selecione as opções que você deseja</p>
+                <div class="options--control">
+                    <label for="characters">Quantidade de caracteres:</label>
+                    <input type="number" name="characters" id="characters" value="5" size="2" maxlength="2" min="5"
+                        max="20">
+                </div>
+                <div class="options--control">
+                    <label for="">Letras:</label>
+                    <input type="checkbox" checked>
+                </div>
+                <div class="options--control">
+                    <label for="">Números:</label>
+                    <input type="checkbox" checked>
+                </div>
+                <div class="options--control">
+                    <label for="">Simbolos:</label>
+                    <input type="checkbox" checked>
+                </div>
+                <input type="submit" class="btn" value="Criar Senha">
+            </div>
             <div class="generated--password">
                 <button class="copy--password">
                     <i class="fa-regular fa-copy"></i>

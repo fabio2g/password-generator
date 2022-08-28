@@ -154,3 +154,36 @@ input:focus {
 .register--form input[type="submit"]:hover {
     opacity: 1;
 }
+
+.options--password {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 1.2rem 0.7rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.options--password .options--control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.options--password .options--control label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.options--password .options--control input {
+    text-align: center;
+    border: 1px solid #bbb;
+    padding: 4px 0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.options--password input[type="submit"] {
+    background: blue;
+}

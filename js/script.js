@@ -1,5 +1,7 @@
 const generatePasswordButton = document.querySelector(".generate--password");
 const generatedPasswordElement = document.querySelector(".generated--password");
+const optionsPasswordButton = document.querySelector(".btn");
+const optionsPasswordElement = document.querySelector(".options--password");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const copyPasswordButton = document.querySelector(".copy--password");
@@ -36,7 +38,13 @@ const getPassword = (
     getSymbol
 ) => {
     let password = "";
-    const passwordLength = 10;
+    let passwordLength = document.getElementById("characters").value;
+
+    if (passwordLength > 20) {
+        passwordLength = 20;
+    } else if (passwordLength < 5) {
+        passwordLength = 5;
+    }
 
     const generators = [
         getLetterLowerCase,
@@ -50,6 +58,7 @@ const getPassword = (
     }
     generatedPasswordElement.style.display = "block";
     generatedPasswordElement.querySelector("h4").innerHTML = password;
+    optionsPasswordElement.style.display = "";
     passwordInput.value = password;
     confirmPasswordInput.value = password;
 };
@@ -66,5 +75,10 @@ copyPasswordButton.addEventListener("click", () => {
 });
 
 generatePasswordButton.addEventListener("click", () => {
+    optionsPasswordElement.style.display = "block";
+    generatedPasswordElement.style.display = "";
+});
+
+optionsPasswordButton.addEventListener("click", () => {
     getPassword(getLetterLowerCase, getLetterUpperCase, getNumber, getSymbol);
 });
