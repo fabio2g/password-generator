@@ -5,6 +5,9 @@ const optionsPasswordElement = document.querySelector(".options--password");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const copyPasswordButton = document.querySelector(".copy--password");
+const checkLettres = document.getElementById("checkLettres");
+const checkNumbers = document.getElementById("checkNumbers");
+const checkSymbols = document.getElementById("checkSymbols");
 
 const getLetterLowerCase = () => {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -23,13 +26,46 @@ const getSymbol = () => {
     return symbols.charAt(Math.floor(Math.random() * symbols.length));
 };
 
+const charactersLengthValidation = () => {
+    let charactersLength = document.getElementById("characters").value;
+
+    if (charactersLength < 5) {
+        charactersLength = 5;
+    }
+    if (charactersLength > 20) {
+        charactersLength = 20;
+    }
+
+    return charactersLength;
+};
+
+const validationCheckbox = () => {
+    let checkSelected = [];
+
+    if (checkLettres.checked) {
+        checkSelected.push(getLetterLowerCase);
+        checkSelected.push(getLetterUpperCase);
+    }
+    if (checkNumbers.checked) {
+        checkSelected.push(getNumber);
+    }
+    if (checkSymbols.checked) {
+        checkSelected.push(getSymbol);
+    }
+    if (
+        !checkLettres.checked &&
+        !checkNumbers.checked &&
+        !checkSymbols.checked
+    ) {
+        checkSelected.push(getLetterLowerCase);
+    }
+
+    return checkSelected;
+};
+
 /**
  * Gera senha customizada com letras maiúsculas, minúsculas,
  * números e caracteres
- * @param {string} getLetterLowerCase
- * @param {string} getLetterUpperCase
- * @param {string} getNumber
- * @param {string} getSymbol
  */
 const getPassword = (
     getLetterLowerCase,
@@ -37,23 +73,13 @@ const getPassword = (
     getNumber,
     getSymbol
 ) => {
+    // Refatorar esa parte
     let password = "";
-    let passwordLength = document.getElementById("characters").value;
+    characters = charactersLengthValidation();
 
-    if (passwordLength > 20) {
-        passwordLength = 20;
-    } else if (passwordLength < 5) {
-        passwordLength = 5;
-    }
+    const generators = validationCheckbox();
 
-    const generators = [
-        getLetterLowerCase,
-        getLetterUpperCase,
-        getNumber,
-        getSymbol,
-    ];
-
-    for (let i = 0; i < passwordLength; i++) {
+    for (let i = 0; i < characters; i++) {
         password += generators[Math.floor(Math.random() * generators.length)]();
     }
     generatedPasswordElement.style.display = "block";
